@@ -3,8 +3,8 @@ from random import randint
 high = [' ',',','.',':',';']
 low = ['O','0']
 
-x = 500 
-y = 500
+x = int(raw_input("width"))
+y = int(raw_input("height"))
 
 f = open("map.txt","w+")
 
