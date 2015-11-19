@@ -5,7 +5,7 @@ int main()
     Screen s;
     
     //Frame map(2*s.getHeight(),2*s.getWidth(),0,0);
-    Frame map("../scripts/map",0,0);
+    Frame map("scripts/map.txt",0,0);
     Frame view(map,s.getHeight(),s.getWidth(),0,0);
 
     Character cursor('X',map.getHeight()/2,map.getWidth()/2);

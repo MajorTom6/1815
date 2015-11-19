@@ -3,10 +3,10 @@ from random import randint
 high = [' ',',','.',':',';']
 low = ['O','0']
 
-x = 300 
-y = 100
+x = 500 
+y = 500
 
-f = open("map","w+")
+f = open("map.txt","w+")
 
 for i in range(y):
     for j in range(x):

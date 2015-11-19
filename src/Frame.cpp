@@ -24,13 +24,21 @@ Frame::Frame(string location, int nRow, int nCol)
     
     if(file.is_open())
     {
+        getline(file,line);
+        m.append(line);
+        i=line.length();
         while(getline(file,line))
         {
             m.append(line);
             j++;
         }
-        i=line.length();
     }
+    
+    w = newwin(j,i,nRow,nCol);
+    height = j;
+    width = i;
+    row = nRow;
+    col = nCol; 
 }
 
 
@@ -128,24 +136,10 @@ void Frame::move(int nRow, int nCol)
 
 void Frame::fillWindow()
 {
-    int maxX = width/2;
-    int maxY = height/2;
-    
-    for(int y = 0; y < maxY; ++y)
-        for(int x = 0; x < maxX; ++x)
-            mvwaddch(w, y, x, '0');
-	
-    for(int y = 0; y < maxY; ++y)
-        for(int x = maxX; x < width; ++x)
-            mvwaddch(w, y, x, '1');
-
-    for(int y = maxY; y < height; ++y)
-	for(int x = 0; x < maxX; ++x)
-	    mvwaddch(w, y, x, '2');
-
-    for(int y = maxY; y < height; ++y)
-	for(int x = maxX; x < width; ++x)
-	    mvwaddch(w, y, x, '3');
+    for(int i = 0; i < width;i++ )
+        for(int j = 0; j < height;j++)
+            mvwaddch(w,j,i,'.');
+       
 
     for(int y = 0; y < height; ++y)
     {
