@@ -17,11 +17,11 @@ Frame::Frame(string location, int nRow, int nCol)
 {
     hasSuper = FALSE;
     super = NULL;
-    
+
     int i, j=0;
     string line;
     ifstream file (location);
-    
+
     if(file.is_open())
     {
         getline(file,line);
@@ -33,7 +33,7 @@ Frame::Frame(string location, int nRow, int nCol)
             j++;
         }
     }
-    
+
     w = newwin(j,i,nRow,nCol);
     height = j;
     width = i;
@@ -140,12 +140,16 @@ void Frame::fillWindow()
         for(int i = 0; i < width; i++)
             for(int j = 0; j < height; j++)
             {
-                attron(COLOR_PAIR(1));
+                if(m[j][i] == 'O' || m[j][i] == '0')
+                    wattron(w,COLOR_PAIR(2));
+                else
+                    wattron(w,COLOR_PAIR(1));
                 mvwaddch(w,j,i,m[j][i]);
             }
     
+    wattron(w,COLOR_PAIR(3));
     for(int y = 0; y < height; ++y)
-    {
+    {      
 	mvwaddch(w, y, 0, '-');
 	mvwaddch(w, y, width - 1, '-');
     }
@@ -155,6 +159,7 @@ void Frame::fillWindow()
 	mvwaddch(w, 0, x, '|');
 	mvwaddch(w, height - 1, x, '|');
     }
+    wattroff(w,COLOR_PAIR(3));
 }
 
 WINDOW * Frame::getWin()
