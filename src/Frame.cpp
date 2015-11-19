@@ -25,11 +25,11 @@ Frame::Frame(string location, int nRow, int nCol)
     if(file.is_open())
     {
         getline(file,line);
-        m.append(line);
+        m.push_back(line);
         i=line.length();
         while(getline(file,line))
         {
-            m.append(line);
+            m.push_back(line);
             j++;
         }
     }
@@ -135,12 +135,15 @@ void Frame::move(int nRow, int nCol)
 }
 
 void Frame::fillWindow()
-{
-    for(int i = 0; i < width;i++ )
-        for(int j = 0; j < height;j++)
-            mvwaddch(w,j,i,'.');
-       
-
+{ 
+    if(!colored)
+        for(int i = 0; i < width; i++)
+            for(int j = 0; j < height; j++)
+            {
+                attron(COLOR_PAIR(1));
+                mvwaddch(w,j,i,m[j][i]);
+            }
+    
     for(int y = 0; y < height; ++y)
     {
 	mvwaddch(w, y, 0, '-');

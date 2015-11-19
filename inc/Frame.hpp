@@ -6,6 +6,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -35,9 +36,10 @@ class Frame
         int height, width;
         int row, col;
         bool hasSuper;
+        bool colored = false;
         WINDOW * w;
         WINDOW * super;
-        string m;
+        vector <string> m;
 };
 
 #endif
