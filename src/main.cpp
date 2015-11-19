@@ -6,12 +6,14 @@ int main()
 
     Frame map("scripts/map.txt",0,0);
     Frame view(map,s.getHeight(),s.getWidth(),0,0);
+    List L;
 
-    Character cursor('X',map.getHeight()/2,map.getWidth()/2);
+    Character cursor('X',3,map.getHeight()/2,map.getWidth()/2);
 
     map.fillWindow();
-    map.add(cursor);
-    view.center(cursor);
+    cursor.draw(map.getWin());
+    //view.center(cursor);
+    L.draw(map.getWin());
     view.refresh(); 
     
     while(true)
@@ -32,6 +34,8 @@ int main()
         view.center(cursor);
         view.refresh();
         map.fillWindow();
+        cursor.draw(map.getWin());
+        L.draw(map.getWin());
     }
 
     return 0;

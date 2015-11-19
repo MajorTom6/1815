@@ -4,5 +4,6 @@
 #include "Screen.hpp"
 #include "Character.hpp"
 #include "Frame.hpp"
+#include "List.hpp"
 
 #endif
