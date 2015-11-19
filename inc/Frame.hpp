@@ -12,8 +12,7 @@ using namespace std;
 
 class Frame
 {
-    public:
-        //Frame(int rows, int cols, int nRow, int nCol); // main window test
+    public: 
         Frame(string location, int nRow, int nCol); // main window with seeded map
         Frame(Frame &super, int rows, int cols, int nRow, int nCol); // viewport
         ~Frame();

@@ -1,18 +1,5 @@
 #include "Frame.hpp"
 
-/*
-Frame::Frame(int rows, int cols, int nRow, int nCol)
-{
-    hasSuper = FALSE;
-    super = NULL;
-    w = newwin(rows,cols,nRow,nCol);
-    height = rows;
-    width = cols;
-    row = nRow;
-    col = nCol;
-}
-*/
-
 Frame::Frame(string location, int nRow, int nCol)
 {
     hasSuper = FALSE;
