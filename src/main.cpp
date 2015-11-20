@@ -29,6 +29,7 @@ int main()
         else if	(c == 'q')
             	break; 
 
+        L.actions();
         map.fillWindow();
         L.draw(map.getWin());
         cursor.draw(map.getWin());

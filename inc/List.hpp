@@ -4,6 +4,9 @@
 #include "Character.hpp"
 #include <vector>
 #include <ncurses.h>
+#include <ctime>
+#include <cstdlib>
+
 using namespace std;
 
 class List
@@ -11,6 +14,7 @@ class List
     public:
         List();
         void draw(WINDOW * w);
+        void actions();
     private:
         vector <Character> men;
 };

@@ -9,6 +9,7 @@ Screen::Screen()
     keypad(stdscr,TRUE);
     curs_set(0);
     getmaxyx(stdscr,height,width);
+    timeout(100);
 
     start_color();
     init_pair(1, COLOR_GREEN, COLOR_BLACK);
