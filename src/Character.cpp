@@ -1,19 +1,10 @@
 #include "Character.hpp"
 
-Character::Character(char nSymbol, int nColor, int nRow, int nCol)
+Character::Character(char nSymbol, int nColor, Location L)
 {
-    symbol = nSymbol;
-    row = nRow;
-    col = nCol;
+    symbol = nSymbol; 
     color = nColor;
-    l.x = row;
-    l.y = col;
-}
-
-void Character::move(Location L)
-{
-    l.x = L.x;
-    l.y = L.y;
+    l = L;
 }
 
 void Character::draw(WINDOW * w)
@@ -22,77 +13,77 @@ void Character::draw(WINDOW * w)
     mvwaddch(w,l.x,l.y,symbol);
 }
 
-int Character::getRow()
-{
-    return row;
-}
-
-int Character::getCol()
-{
-    return col;
-}
-
-char Character::getSymbol()
-{
-    return symbol;
-}
-
-bool Character::action(vector <Location> occupied)
+Location Character::action(vector <Location> occupied)
 {
         if(order == "wander")
         {
-            Location L;
+            Location Lo;
             int r = rand()%15+1; 
             if(r==1)
             {
-                L.x = l.x+1;
-                L.y = l.y;
+                Lo.x = l.x+1;
+                Lo.y = l.y;
             }
             else if(r==2)
             {
-                L.x = l.x-1;
-                L.y = l.y;
+                Lo.x = l.x-1;
+                Lo.y = l.y;
             }
             else if(r==3)
             {
-                L.x = l.x; L.y = l.y+1;
+                Lo.x = l.x; 
+                Lo.y = l.y+1;
             }
             else if(r==4)
             {
-                L.x = l.x; L.y = l.y-1;
+                Lo.x = l.x; 
+                Lo.y = l.y-1;
             }
             else if(r==5)
             {
-                L.x = l.x+1; L.y = l.y+1;
+                Lo.x = l.x+1; 
+                Lo.y = l.y+1;
             }
             else if(r==6)
             {
-                L.x = l.x-1; L.y = l.y-1;
+                Lo.x = l.x-1; 
+                Lo.y = l.y-1;
             }
             else if(r==7)
             {
-                L.x = l.x+1; L.y = l.y-1;
+                Lo.x = l.x+1; 
+                Lo.y = l.y-1;
             }
             else if(r==8)
-            {    L.x = l.x-1; L.y = l.y+1;
-            
+            {    
+                Lo.x = l.x-1; 
+                Lo.y = l.y+1;
             }
             else
-                return false;
+            {
+                Lo = l;
+            }
             
-            if(check(L,occupied))
-                move(L);
+            //move(Lo);
+            
+            if(check(Lo,occupied))
+            {
+                move(Lo);
+                return Lo;
+            }
             else
-                return false;
-
-            return true;
+                return l;
         }
 }
 
 bool Character::check(Location L, vector <Location> occupied)
 {
     for(int i = 0; i < 10; i++)
-        if(l.x == occupied[i].x && l.y == occupied[i].y)
-            return true;
+    {
+        if(L.x == occupied[i].x && L.y == occupied[i].y)
+        {
+            return false;
+        }
+    }
     return true;
 }

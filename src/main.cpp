@@ -7,8 +7,11 @@ int main()
     Frame map("scripts/map.txt",0,0);
     Frame view(map,s.getHeight(),s.getWidth(),0,0);
     List L;
-
-    Character cursor('X',3,map.getHeight()/2,map.getWidth()/2);
+    
+    Location l;
+    l.x =150;
+    l.y =150;
+    Character cursor('X',3,l);
 
     map.fillWindow();
     L.draw(map.getWin());

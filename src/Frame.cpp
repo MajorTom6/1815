@@ -49,12 +49,12 @@ void Frame::add(Character &c)
 {
     mvwaddch(w,c.getRow(),c.getCol(),c.getSymbol());
 }
-*/
+
 void Frame::erase(Character &c)
 {
     mvwaddch(w,c.getRow(),c.getCol(),' ');
 }
-/*
+
 void Frame::add(Character &c, int nRow, int nCol)
 {
     if((nRow >= 0 && nRow < height) && (nCol >= 0 && nCol < width))
