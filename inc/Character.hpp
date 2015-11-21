@@ -11,15 +11,13 @@ using namespace std;
 class Character
 {
     public:
-        Character(char nSymbol, int nColor,int nRow, int nCol);
-        void move(Location L);
+        Character(char nSymbol, int nColor, Location L);
+        void move(Location L){l.x=L.x;l.y=L.y;}
         void draw(WINDOW * w);
-        bool action(vector <Location> occupied);
-        bool check(Location L, vector <Location> occupied);
-        int getRow();
-        int getCol();
+        Location action(vector <Location> occupied);
+        bool check(Location L, vector <Location> occupied);        
         Location getLocation(){return l;}
-        char getSymbol();
+        char getSymbol(){return symbol;}
 
     private:
         string order = "wander";
