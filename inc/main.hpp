@@ -5,5 +5,6 @@
 #include "Character.hpp"
 #include "Frame.hpp"
 #include "List.hpp"
+#include "Location.hpp"
 
 #endif

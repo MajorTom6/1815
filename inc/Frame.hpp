@@ -26,8 +26,8 @@ class Frame
         void fillWindow();
         void refresh();
         void move(int nRow, int nCol);
-        void add(Character &c);
-        void add(Character &c, int nRow, int nCol);
+        //void add(Character &c);
+        //void add(Character &c, int nRow, int nCol);
         void erase(Character &c);
         void center(Character &ch);
 

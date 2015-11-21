@@ -17,19 +17,20 @@ int main()
     while(true)
     {
         char c = getch();
-
+        Location l = cursor.getLocation();
         if	(c == 'h')
-		cursor.move(cursor.getRow(),cursor.getCol()-1);
+            l.y = l.y-1;
         else if	(c == 'l')
-            	cursor.move(cursor.getRow(),cursor.getCol()+1);
+            l.y = l.y+1;
         else if	(c == 'k')
-            	cursor.move(cursor.getRow()-1,cursor.getCol());
+            l.x = l.x+1;
         else if	(c == 'j')
-            	cursor.move(cursor.getRow()+1,cursor.getCol());
+            l.x = l.x-1;
         else if	(c == 'q')
-            	break; 
+            	break;
 
-        L.actions();
+        cursor.move(l);
+        L.action();
         map.fillWindow();
         L.draw(map.getWin());
         cursor.draw(map.getWin());

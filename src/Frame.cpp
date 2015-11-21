@@ -44,17 +44,17 @@ Frame::~Frame()
 {
     delwin(w);
 }
-
+/*
 void Frame::add(Character &c)
 {
     mvwaddch(w,c.getRow(),c.getCol(),c.getSymbol());
 }
-
+*/
 void Frame::erase(Character &c)
 {
     mvwaddch(w,c.getRow(),c.getCol(),' ');
 }
-
+/*
 void Frame::add(Character &c, int nRow, int nCol)
 {
     if((nRow >= 0 && nRow < height) && (nCol >= 0 && nCol < width))
@@ -64,7 +64,7 @@ void Frame::add(Character &c, int nRow, int nCol)
         c.move(nRow,nCol);
     }
 }
-
+*/
 void Frame::center(Character &ch)
 {
     if(hasSuper)
@@ -72,8 +72,8 @@ void Frame::center(Character &ch)
         int rr = row;
         int cc = col;
         int hh, ww;
-        int r = ch.getRow() - height/2;
-        int c = ch.getCol() - width/2;
+        int r = ch.getLocation().x - height/2;
+        int c = ch.getLocation().y - width/2;
 
         getmaxyx(super, hh, ww);
 

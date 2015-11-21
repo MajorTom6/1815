@@ -6,7 +6,7 @@
 #include <ncurses.h>
 #include <ctime>
 #include <cstdlib>
-
+#include "Location.hpp"
 using namespace std;
 
 class List
@@ -14,9 +14,10 @@ class List
     public:
         List();
         void draw(WINDOW * w);
-        void actions();
+        void action();
     private:
-        vector <Character> men;
+        vector <Character> men; 
+        vector <Location> occupied;
 };
 
 #endif
