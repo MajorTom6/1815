@@ -16,7 +16,8 @@ int main()
     map.fillWindow();
     L.draw(map.getWin());
     cursor.draw(map.getWin());
-
+    
+    bool paused = false;
     while(true)
     {
         char c = getch();
@@ -31,9 +32,23 @@ int main()
             l.x = l.x-1;
         else if	(c == 'q')
             	break;
-
+        else if (c == 'p')
+        {
+            if  (paused)
+            {
+                timeout(100);
+                paused = false;
+            }
+            else
+            {
+                timeout(-1);
+                paused = true;
+            }
+        }
+        
         cursor.move(l);
-        L.action();
+        if (!paused)
+            L.action();
         map.fillWindow();
         L.draw(map.getWin());
         cursor.draw(map.getWin());

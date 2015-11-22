@@ -44,27 +44,7 @@ Frame::~Frame()
 {
     delwin(w);
 }
-/*
-void Frame::add(Character &c)
-{
-    mvwaddch(w,c.getRow(),c.getCol(),c.getSymbol());
-}
 
-void Frame::erase(Character &c)
-{
-    mvwaddch(w,c.getRow(),c.getCol(),' ');
-}
-
-void Frame::add(Character &c, int nRow, int nCol)
-{
-    if((nRow >= 0 && nRow < height) && (nCol >= 0 && nCol < width))
-    {
-        erase(c);
-        mvwaddch(w,nRow,nCol,c.getSymbol());
-        c.move(nRow,nCol);
-    }
-}
-*/
 void Frame::center(Character &ch)
 {
     if(hasSuper)
@@ -148,42 +128,3 @@ void Frame::fillWindow()
     }
     wattroff(w,COLOR_PAIR(3));
 }
-
-WINDOW * Frame::getWin()
-{
-    return w;
-}
-
-WINDOW * Frame::getSuper()
-{
-    return super;
-}
-
-bool Frame::getHasSuper()
-{
-    return hasSuper;
-}
-
-int Frame::getHeight()
-{
-    return height;
-}
-
-int Frame::getWidth()
-{
-    return width;
-}
-
-int Frame::getRow()
-{
-    return row;
-}
-
-int Frame::getCol()
-{
-    return col;
-}
-
-
-
-

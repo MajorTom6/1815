@@ -16,13 +16,13 @@ class Frame
         Frame(string location, int nRow, int nCol); // main window with seeded map
         Frame(Frame &super, int rows, int cols, int nRow, int nCol); // viewport
         ~Frame();
-        WINDOW * getWin();
-        WINDOW * getSuper();
-        bool getHasSuper();
-        int getHeight();
-        int getWidth();
-        int getRow();
-        int getCol();
+        WINDOW * getWin(){return w;}
+        WINDOW * getSuper(){return super;}
+        bool getHasSuper(){return hasSuper;}
+        int getHeight(){return height;}
+        int getWidth(){return width;}
+        int getRow(){return row;}
+        int getCol(){return col;}
         void fillWindow();
         void refresh();
         void move(int nRow, int nCol);

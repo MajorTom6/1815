@@ -28,13 +28,3 @@ void Screen::ping(string msg)
     const char * cmsg = msg.c_str();
     printw(cmsg);
 }
-
-int Screen::getHeight()
-{
-    return height;
-}
-
-int Screen::getWidth()
-{
-    return width;
-}

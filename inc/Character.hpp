@@ -12,7 +12,7 @@ class Character
 {
     public:
         Character(char nSymbol, int nColor, Location L);
-        void move(Location L){l.x=L.x;l.y=L.y;}
+        void move(Location L){l=L;}
         void draw(WINDOW * w);
         Location action(vector <Location> occupied);
         bool check(Location L, vector <Location> occupied);        

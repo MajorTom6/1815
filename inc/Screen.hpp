@@ -12,8 +12,8 @@ class Screen
         Screen();
         ~Screen();
         void ping(string msg);
-        int getHeight();
-        int getWidth();
+        int getHeight(){return height;}
+        int getWidth(){return width;}
     private:
         int height, width;
 };

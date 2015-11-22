@@ -64,8 +64,6 @@ Location Character::action(vector <Location> occupied)
                 Lo = l;
             }
             
-            //move(Lo);
-            
             if(check(Lo,occupied))
             {
                 move(Lo);
@@ -78,12 +76,9 @@ Location Character::action(vector <Location> occupied)
 
 bool Character::check(Location L, vector <Location> occupied)
 {
-    for(int i = 0; i < 10; i++)
-    {
+    for(int i = 0; i < 10; i++) 
         if(L.x == occupied[i].x && L.y == occupied[i].y)
-        {
             return false;
-        }
-    }
+
     return true;
 }
