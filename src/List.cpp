@@ -2,7 +2,7 @@
 
 List::List()
 {
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 50; i++)
     {
         Location L;
         L.x = 150;
@@ -14,12 +14,12 @@ List::List()
 
 void List::draw(WINDOW * w)
 {
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < men.size(); i++)
         men[i].draw(w);
 }
 
 void List::action()
 {
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < men.size(); i++)
         men[i].action(men);
 }

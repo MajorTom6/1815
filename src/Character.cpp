@@ -69,7 +69,7 @@ void Character::action(vector <Character> men)
 
 bool Character::check(Location L, vector <Character> men)
 {
-    for(int i = 0; i < 10; i++) 
+    for(int i = 0; i < men.size(); i++) 
         if(L.x == men[i].getLocation().x && L.y == men[i].getLocation().y)
             return false;
 

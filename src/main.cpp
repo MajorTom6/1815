@@ -31,20 +31,9 @@ int main()
         else if	(c == 'j')
             l.x = l.x-1;
         else if	(c == 'q')
-            	break;
+            break;
         else if (c == 'p')
-        {
-            if  (paused)
-            {
-                timeout(100);
-                paused = false;
-            }
-            else
-            {
-                timeout(-1);
-                paused = true;
-            }
-        }
+            paused = !paused;    
         
         cursor.move(l);
         if (!paused)
