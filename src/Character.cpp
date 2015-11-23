@@ -13,7 +13,7 @@ void Character::draw(WINDOW * w)
     mvwaddch(w,l.x,l.y,symbol);
 }
 
-Location Character::action(vector <Character> men)
+void Character::action(vector <Character> men)
 {
         if(order == "wander")
         {
@@ -60,17 +60,10 @@ Location Character::action(vector <Character> men)
                 Lo.y = l.y+1;
             }
             else
-            {
                 Lo = l;
-            }
             
             if(check(Lo,men))
-            {
                 move(Lo);
-                return Lo;
-            }
-            else
-                return l;
         }
 }
 
