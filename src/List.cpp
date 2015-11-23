@@ -8,8 +8,7 @@ List::List()
         L.x = 150;
         L.y = 150+i;
         Character x ('@',4,L);
-        men.push_back(x);
-        occupied.push_back(x.getLocation()); 
+        men.push_back(x); 
     } 
 }
 
@@ -22,9 +21,5 @@ void List::draw(WINDOW * w)
 void List::action()
 {
     for(int i = 0; i < 10; i++)
-    {
-        Location L = men[i].action(occupied);
-        if (L.x != 0 && L.y != 0)
-            occupied[i]=L;
-    }
+        men[i].action(men);
 }
