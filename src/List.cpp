@@ -1,8 +1,8 @@
 #include "List.hpp"
 
-List::List()
+List::List(vector <Location> i)
 {
-    for(int i = 0; i < 50; i++)
+    for(int i = 0; i < 10; i++)
     {
         Location L;
         L.x = 150;
@@ -10,6 +10,7 @@ List::List()
         Character x ('@',4,L);
         men.push_back(x); 
     } 
+    impassable = i;
 }
 
 void List::draw(WINDOW * w)
@@ -21,5 +22,5 @@ void List::draw(WINDOW * w)
 void List::action()
 {
     for(int i = 0; i < men.size(); i++)
-        men[i].action(men);
+        men[i].action(men,impassable);
 }

@@ -6,14 +6,13 @@ int main()
 
     Frame map("scripts/map.txt",0,0);
     Frame view(map,s.getHeight(),s.getWidth(),0,0);
-    List L;
     
-    Location l;
-    l.x =150;
-    l.y =150;
+    Location l(150,150);
     Character cursor('X',3,l);
 
     map.fillWindow();
+    List L(map.getImpassable());
+    
     L.draw(map.getWin());
     cursor.draw(map.getWin());
     

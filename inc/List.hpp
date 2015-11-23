@@ -11,11 +11,12 @@ using namespace std;
 class List
 {
     public:
-        List();
+        List(vector <Location> i);
         void draw(WINDOW * w);
         void action();
     private:
-        vector <Character> men; 
+        vector <Character> men;
+        vector <Location> impassable;
 };
 
 #endif

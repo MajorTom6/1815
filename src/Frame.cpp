@@ -4,7 +4,7 @@ Frame::Frame(string location, int nRow, int nCol)
 {
     hasSuper = FALSE;
     super = NULL;
-
+    filled = false;
     int i, j=0;
     string line;
     ifstream file (location);
@@ -31,6 +31,7 @@ Frame::Frame(string location, int nRow, int nCol)
 
 Frame::Frame(Frame &sw, int rows, int cols, int nRow, int nCol)
 {
+    filled = false;
     hasSuper = TRUE;
     super = sw.getWin();
     w = derwin(super,rows,cols,nRow,nCol);
@@ -103,28 +104,51 @@ void Frame::move(int nRow, int nCol)
 
 void Frame::fillWindow()
 { 
-    if(!colored)
-        for(int i = 0; i < width; i++)
-            for(int j = 0; j < height; j++)
+    
+    for(int i = 0; i < width; i++)
+        for(int j = 0; j < height; j++)
+        {
+            if(m[j][i] == 'O' || m[j][i] == '0')
             {
-                if(m[j][i] == 'O' || m[j][i] == '0')
-                    wattron(w,COLOR_PAIR(2));
-                else
-                    wattron(w,COLOR_PAIR(1));
-                mvwaddch(w,j,i,m[j][i]);
+                wattron(w,COLOR_PAIR(2));
+                if(!filled)
+                {
+                    Location l(j,i);
+                    impassable.push_back(l);
+                }
             }
+            else
+                wattron(w,COLOR_PAIR(1));
+    
+            mvwaddch(w,j,i,m[j][i]);
+        }
     
     wattron(w,COLOR_PAIR(3));
     for(int y = 0; y < height; ++y)
     {      
 	mvwaddch(w, y, 0, '-');
 	mvwaddch(w, y, width - 1, '-');
+        if(!filled)
+        {
+            Location l1(y,0);
+            Location l2(y,width-1);
+            impassable.push_back(l1);
+            impassable.push_back(l2);
+        }
     }
 
     for(int x = 0; x < width; ++x) 
     {
 	mvwaddch(w, 0, x, '|');
 	mvwaddch(w, height - 1, x, '|');
+        if(!filled)
+        {
+            Location l1(0,x);
+            Location l2(height-1,x);
+            impassable.push_back(l1);
+            impassable.push_back(l2);
+        }
     }
     wattroff(w,COLOR_PAIR(3));
+    filled = true;
 }

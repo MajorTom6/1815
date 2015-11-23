@@ -14,8 +14,8 @@ class Character
         Character(char nSymbol, int nColor, Location L);
         void move(Location L){l=L;}
         void draw(WINDOW * w);
-        void action(vector <Character> men);
-        bool check(Location L, vector <Character> men);        
+        void action(vector <Character> men, vector <Location> impassable);
+        bool check(Location L, vector <Character> men, vector <Location> impassable);        
         Location getLocation(){return l;}
         char getSymbol(){return symbol;}
 

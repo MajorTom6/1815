@@ -27,15 +27,17 @@ class Frame
         void refresh();
         void move(int nRow, int nCol);
         void center(Character &ch);
+        vector <Location> getImpassable(){return impassable;}
 
     private:
         int height, width;
         int row, col;
         bool hasSuper;
-        bool colored = false;
+        bool filled;
         WINDOW * w;
         WINDOW * super;
         vector <string> m;
+        vector <Location> impassable;
 };
 
 #endif

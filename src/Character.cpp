@@ -13,65 +13,47 @@ void Character::draw(WINDOW * w)
     mvwaddch(w,l.x,l.y,symbol);
 }
 
-void Character::action(vector <Character> men)
+void Character::action(vector <Character> men, vector <Location> impassable)
 {
         if(order == "wander")
-        {
-            Location Lo;
+        { 
             int r = rand()%15+1; 
+            bool stay = false;
+            Location L;
             if(r==1)
-            {
-                Lo.x = l.x+1;
-                Lo.y = l.y;
-            }
+                L = Location(l.x+1,l.y);
             else if(r==2)
-            {
-                Lo.x = l.x-1;
-                Lo.y = l.y;
-            }
+                L = Location(l.x-1,l.y);
             else if(r==3)
-            {
-                Lo.x = l.x; 
-                Lo.y = l.y+1;
-            }
+                L = Location(l.x,l.y+1);
             else if(r==4)
-            {
-                Lo.x = l.x; 
-                Lo.y = l.y-1;
-            }
+                L = Location(l.x,l.y-1);
             else if(r==5)
-            {
-                Lo.x = l.x+1; 
-                Lo.y = l.y+1;
-            }
+                L = Location(l.x+1,l.x+1);
             else if(r==6)
-            {
-                Lo.x = l.x-1; 
-                Lo.y = l.y-1;
-            }
+                L = Location(l.x-1,l.y-1);
             else if(r==7)
-            {
-                Lo.x = l.x+1; 
-                Lo.y = l.y-1;
-            }
+                L = Location(l.x+1,l.y-1);
             else if(r==8)
-            {    
-                Lo.x = l.x-1; 
-                Lo.y = l.y+1;
-            }
+                L = Location(l.x-1,l.y+1);
             else
-                Lo = l;
+                stay = true;
             
-            if(check(Lo,men))
-                move(Lo);
+            if (!stay)
+                if(check(L,men,impassable))
+                    move(L);
         }
 }
 
-bool Character::check(Location L, vector <Character> men)
+bool Character::check(Location L, vector <Character> men, vector <Location> impassable)
 {
     for(int i = 0; i < men.size(); i++) 
         if(L.x == men[i].getLocation().x && L.y == men[i].getLocation().y)
             return false;
-
+    
+    for(int i = 0; i < impassable.size(); i++)
+        if(L.x == impassable[i].x && L.y == impassable[i].y)
+            return false;
+    
     return true;
 }
