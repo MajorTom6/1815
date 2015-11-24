@@ -16,33 +16,9 @@ void Character::draw(WINDOW * w)
 void Character::action(vector <Character> men, vector <Location> impassable)
 {
         if(order == "wander")
-        { 
-            int r = rand()%15+1; 
-            bool stay = false;
-            Location L;
-            if(r==1)
-                L = Location(l.x+1,l.y);
-            else if(r==2)
-                L = Location(l.x-1,l.y);
-            else if(r==3)
-                L = Location(l.x,l.y+1);
-            else if(r==4)
-                L = Location(l.x,l.y-1);
-            else if(r==5)
-                L = Location(l.x+1,l.x+1);
-            else if(r==6)
-                L = Location(l.x-1,l.y-1);
-            else if(r==7)
-                L = Location(l.x+1,l.y-1);
-            else if(r==8)
-                L = Location(l.x-1,l.y+1);
-            else
-                stay = true;
-            
-            if (!stay)
-                if(check(L,men,impassable))
-                    move(L);
-        }
+            wander(men, impassable);
+        else if(order == "move")
+            astar(men,impassable);
 }
 
 bool Character::check(Location L, vector <Character> men, vector <Location> impassable)
@@ -56,4 +32,42 @@ bool Character::check(Location L, vector <Character> men, vector <Location> impa
             return false;
     
     return true;
+}
+
+void Character::wander(vector <Character> men, vector <Location> impassable)
+{
+    int r = rand()%15+1; 
+    bool stay = false;
+    Location L;
+    if(r==1) 
+        L = Location(l.x+1,l.y);
+    else if(r==2)
+        L = Location(l.x-1,l.y);
+    else if(r==3)
+        L = Location(l.x,l.y+1);
+    else if(r==4)
+        L = Location(l.x,l.y-1);
+    else if(r==5)
+        L = Location(l.x+1,l.x+1);
+    else if(r==6)
+        L = Location(l.x-1,l.y-1);
+    else if(r==7)
+        L = Location(l.x+1,l.y-1);
+    else if(r==8)
+        L = Location(l.x-1,l.y+1);
+    else
+        stay = true;
+            
+    if (!stay)
+        if(check(L,men,impassable))
+            move(L);
+}
+
+void Character::astar(vector <Character> men, vector <Location> impassable)
+{
+   vector <Location> closed;
+   vector <Location> open;
+    
+
+
 }

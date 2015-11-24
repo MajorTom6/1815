@@ -16,12 +16,15 @@ class Character
         void draw(WINDOW * w);
         void action(vector <Character> men, vector <Location> impassable);
         bool check(Location L, vector <Character> men, vector <Location> impassable);        
+        void astar(vector <Character> men, vector <Location> impassable);
+        void wander(vector <Character> men, vector <Location> impassable);
         Location getLocation(){return l;}
         char getSymbol(){return symbol;}
 
     private:
         string order = "wander";
-        Location l;
+        Location l; // current location
+        Location d; // destination
         char symbol;
         int row;
         int col;
