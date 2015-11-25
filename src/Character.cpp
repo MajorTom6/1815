@@ -53,15 +53,15 @@ void Character::heuristic(vector <Character> men, vector <Location> impassable)
     
     float v,u;
     Location L;
+
     if(open.size())
     {
-        v = sqrt(((open[0].x - d.x)^2) + ((open[0].y - d.y)^2));
+        v = sqrt(pow(open[0].x - d.x,2) + pow(open[0].y - d.y,2));
         L = open[0];
     }
     for(int i = 0; i < open.size(); i++)
     {
-        u = sqrt(((open[i].x - d.x)^2) + ((open[i].y - d.y)^2));
-        cout << u << "  ";
+        u = sqrt(pow(open[i].x - d.x,2) + pow(open[i].y - d.y,2));
         if (u<v)
         {
             L = open[i];
@@ -69,6 +69,8 @@ void Character::heuristic(vector <Character> men, vector <Location> impassable)
         }
     }
     move(L);
+    if(l.x==d.x && l.y==d.y)
+        order="wait";
 }
 
 vector <Location> Character::getLocal(Location L, vector <Character> men, vector <Location> impassable)

@@ -25,7 +25,7 @@ class Character
         char getSymbol(){return symbol;}
 
     private:
-        string order = "wander";
+        string order = "move";
         Location l; // current location
         Location d; // destination
         char symbol;
