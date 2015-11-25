@@ -14,6 +14,7 @@ class List
         List(vector <Location> i);
         void draw(WINDOW * w);
         void action();
+        void order(Location l);
     private:
         vector <Character> men;
         vector <Location> impassable;

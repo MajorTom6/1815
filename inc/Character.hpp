@@ -23,9 +23,9 @@ class Character
         void wander(vector <Character> men, vector <Location> impassable);
         Location getLocation(){return l;}
         char getSymbol(){return symbol;}
-
+        void giveOrder(Location L){d = L;order="move";}
     private:
-        string order = "move";
+        string order = "wander";
         Location l; // current location
         Location d; // destination
         char symbol;

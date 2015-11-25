@@ -20,7 +20,7 @@ int main()
     while(true)
     {
         char c = getch();
-        Location l = cursor.getLocation();
+        l = cursor.getLocation();
         if	(c == 'h')
             l.y = l.y-1;
         else if	(c == 'l')
@@ -32,7 +32,9 @@ int main()
         else if	(c == 'q')
             break;
         else if (c == 'p')
-            paused = !paused;    
+            paused = !paused;
+        else if (c == 'o')
+            L.order(l);
         
         cursor.move(l);
         if (!paused)

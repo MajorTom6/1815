@@ -24,3 +24,9 @@ void List::action()
     for(int i = 0; i < men.size(); i++)
         men[i].action(men,impassable);
 }
+
+void List::order(Location l)
+{
+    for(int i = 0; i < men.size(); i++)
+        men[i].giveOrder(l);
+}
