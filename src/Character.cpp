@@ -5,6 +5,7 @@ Character::Character(char nSymbol, int nColor, Location L)
     symbol = nSymbol; 
     color = nColor;
     l = L;
+    d = Location(100,100);
 }
 
 void Character::draw(WINDOW * w)
@@ -18,7 +19,7 @@ void Character::action(vector <Character> men, vector <Location> impassable)
         if(order == "wander")
             wander(men, impassable);
         else if(order == "move")
-            astar(men,impassable);
+            heuristic(men,impassable);
 }
 
 bool Character::check(Location L, vector <Character> men, vector <Location> impassable)
@@ -36,38 +37,76 @@ bool Character::check(Location L, vector <Character> men, vector <Location> impa
 
 void Character::wander(vector <Character> men, vector <Location> impassable)
 {
-    int r = rand()%15+1; 
-    bool stay = false;
-    Location L;
-    if(r==1) 
-        L = Location(l.x+1,l.y);
-    else if(r==2)
-        L = Location(l.x-1,l.y);
-    else if(r==3)
-        L = Location(l.x,l.y+1);
-    else if(r==4)
-        L = Location(l.x,l.y-1);
-    else if(r==5)
-        L = Location(l.x+1,l.x+1);
-    else if(r==6)
-        L = Location(l.x-1,l.y-1);
-    else if(r==7)
-        L = Location(l.x+1,l.y-1);
-    else if(r==8)
-        L = Location(l.x-1,l.y+1);
-    else
-        stay = true;
-            
-    if (!stay)
-        if(check(L,men,impassable))
-            move(L);
+    vector <Location> possible = getLocal(l,men,impassable);
+    int r = rand()%2;
+    
+    if(r && possible.size())
+    { 
+        int i = rand() % possible.size();
+        move(possible[i]);
+    }
 }
 
-void Character::astar(vector <Character> men, vector <Location> impassable)
+void Character::heuristic(vector <Character> men, vector <Location> impassable)
 {
-   vector <Location> closed;
-   vector <Location> open;
+    vector <Location> open = getLocal(l,men,impassable);  
     
+    float v,u;
+    Location L;
+    if(open.size())
+    {
+        v = sqrt(((open[0].x - d.x)^2) + ((open[0].y - d.y)^2));
+        L = open[0];
+    }
+    for(int i = 0; i < open.size(); i++)
+    {
+        u = sqrt(((open[i].x - d.x)^2) + ((open[i].y - d.y)^2));
+        cout << u << "  ";
+        if (u<v)
+        {
+            L = open[i];
+            v = u;
+        }
+    }
+    move(L);
+}
 
+vector <Location> Character::getLocal(Location L, vector <Character> men, vector <Location> impassable)
+{
+    vector <Location> x;
+    Location Lo;
 
+    Lo=Location(L.x+1,L.y);
+    if(check(Lo,men,impassable))
+        x.push_back(Lo);
+    
+    Lo=Location(L.x-1,L.y);
+    if(check(Lo,men,impassable))
+        x.push_back(Lo);
+
+    Lo=Location(L.x,L.y+1);
+    if(check(Lo,men,impassable))
+        x.push_back(Lo);
+
+    Lo=Location(L.x,L.y-1);
+    if(check(Lo,men,impassable))
+        x.push_back(Lo);
+
+    Lo=Location(L.x+1,L.y+1);
+    if(check(Lo,men,impassable))
+        x.push_back(Lo);
+
+    Lo=Location(L.x-1,L.y-1);
+    if(check(Lo,men,impassable))
+        x.push_back(Lo);
+
+    Lo=Location(L.x+1,L.y-1);
+    if(check(Lo,men,impassable))
+        x.push_back(Lo);
+
+    Lo=Location(L.x-1,L.y+1);
+    if(check(Lo,men,impassable))
+        x.push_back(Lo);
+    
+    return x;
 }

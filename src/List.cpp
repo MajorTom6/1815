@@ -2,7 +2,7 @@
 
 List::List(vector <Location> i)
 {
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 3; i++)
     {
         Location L;
         L.x = 150;

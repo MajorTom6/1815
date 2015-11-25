@@ -26,9 +26,9 @@ int main()
         else if	(c == 'l')
             l.y = l.y+1;
         else if	(c == 'k')
-            l.x = l.x+1;
-        else if	(c == 'j')
             l.x = l.x-1;
+        else if	(c == 'j')
+            l.x = l.x+1;
         else if	(c == 'q')
             break;
         else if (c == 'p')

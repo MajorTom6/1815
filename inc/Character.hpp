@@ -6,6 +6,8 @@
 #include <vector>
 #include <string>
 #include "Location.hpp"
+#include <cmath>
+#include <iostream>
 using namespace std;
 
 class Character
@@ -16,7 +18,8 @@ class Character
         void draw(WINDOW * w);
         void action(vector <Character> men, vector <Location> impassable);
         bool check(Location L, vector <Character> men, vector <Location> impassable);        
-        void astar(vector <Character> men, vector <Location> impassable);
+        void heuristic(vector <Character> men, vector <Location> impassable);
+        vector <Location> getLocal(Location L, vector <Character> men, vector <Location> impassable);
         void wander(vector <Character> men, vector <Location> impassable);
         Location getLocation(){return l;}
         char getSymbol(){return symbol;}
@@ -29,6 +32,7 @@ class Character
         int row;
         int col;
         int color;
+//        vector <Location> open;
 };
 
 #endif
